@@ -2,16 +2,41 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Play } from "lucide-react";
 import aiMascot from "@/assets/ai-mascot.png";
+import LoadingView from "./LoadingView";
+import ResultViewer from "./ResultViewer";
 
 const HeroSection = () => {
   const [prompt, setPrompt] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [showResult, setShowResult] = useState(false);
+  const [originalPrompt, setOriginalPrompt] = useState("");
 
   const handleGenerate = () => {
     if (prompt.trim()) {
-      console.log("Generating video for:", prompt);
-      // Here you would integrate with your video generation service
+      setOriginalPrompt(prompt);
+      setIsLoading(true);
+      
+      // Simulate loading time
+      setTimeout(() => {
+        setIsLoading(false);
+        setShowResult(true);
+      }, 8000); // 8 seconds to show all tips
     }
   };
+
+  const handleBackToHome = () => {
+    setShowResult(false);
+    setPrompt("");
+    setOriginalPrompt("");
+  };
+
+  if (isLoading) {
+    return <LoadingView />;
+  }
+
+  if (showResult) {
+    return <ResultViewer onBack={handleBackToHome} originalPrompt={originalPrompt} />;
+  }
 
   return (
     <section className="relative min-h-[600px] bg-gradient-soft flex items-center justify-center px-4 overflow-hidden">

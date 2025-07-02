@@ -44,6 +44,9 @@ All colors MUST be HSL.
     --shadow-magical: 0 10px 40px -10px hsl(205 85% 60% / 0.2);
     --shadow-card: 0 4px 20px -4px hsl(225 15% 20% / 0.1);
     --transition-magical: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Custom animations */
+    --ease-magical: cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
